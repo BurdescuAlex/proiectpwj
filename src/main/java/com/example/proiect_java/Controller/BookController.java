@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -30,7 +31,7 @@ public class BookController {
         return ResponseEntity.unprocessableEntity().build();
     }
 
-    @PostMapping("/changeprice")
+    @PutMapping("/changeprice")
     public ResponseEntity<Void> changePrice(long id,int price){
         if(bookService.changePrice(id,price,userService.getCurrentUser())) {
             return ResponseEntity.ok().build();
@@ -38,7 +39,7 @@ public class BookController {
         return ResponseEntity.notFound().build();
     }
 
-    @PostMapping("/sellState")
+    @PutMapping("/sellstate")
     public ResponseEntity<Void> sellState(long id, boolean sellable){
         if(bookService.sellState(id,sellable,userService.getCurrentUser())) {
             return ResponseEntity.ok().build();
@@ -56,7 +57,7 @@ public class BookController {
     }
 
     @GetMapping("/seebooks")
-    public ResponseEntity<Set<Book>> seeBooks()
+    public ResponseEntity<List<Book>> seeBooks()
     {
         if (bookService.seeBooks(userService.getCurrentUser())!=null)
             return ResponseEntity.ok(bookService.seeBooks(userService.getCurrentUser()));

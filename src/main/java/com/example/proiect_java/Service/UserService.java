@@ -60,6 +60,7 @@ public class UserService {
             if(existingUser.get().getPassword().equals(oldPassword))
             {
                 existingUser.get().setPassword(newPassword);
+                userRepository.save(existingUser.get());
                 return true;
             }
             else {
@@ -75,6 +76,7 @@ public class UserService {
     {
         try {
             this.currentUser.addMoney(amount);
+            userRepository.save(currentUser);
             return true;
         }
         catch (RuntimeException e){
@@ -88,6 +90,7 @@ public class UserService {
             return false;
         try {
             this.currentUser.substractMoney(amount);
+            userRepository.save(currentUser);
             return true;
         }
         catch (RuntimeException e){

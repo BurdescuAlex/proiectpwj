@@ -32,7 +32,7 @@ public class UserController {
             return ResponseEntity.notFound().build();
     }
 
-    @PostMapping("/changepassword")
+    @PutMapping("/changepassword")
     public ResponseEntity<Void> changePassword(String email, String oldPassword, String newPassword) {
         Boolean isOkay=service.changePassword(email,oldPassword,newPassword);
         if (isOkay)
@@ -41,7 +41,7 @@ public class UserController {
             return ResponseEntity.notFound().build();
     }
 
-    @PostMapping("/addmoney")
+    @PutMapping("/addmoney")
     public ResponseEntity<Void> addMoney(int amount){
         if (service.getCurrentUser() != null){
             service.addMoney(amount);
@@ -50,11 +50,12 @@ public class UserController {
         return ResponseEntity.badRequest().build();
     }
 
-    @PostMapping("/substractmoney")
+    @PutMapping("/substractmoney")
     public ResponseEntity<Void> substractMoney(int amount){
         if (service.getCurrentUser() != null){
-            service.substractMoney(amount);
-            return ResponseEntity.ok().build();
+            if(service.substractMoney(amount))
+                return ResponseEntity.ok().build();
+            return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.badRequest().build();
     }

@@ -1,4 +1,5 @@
 package com.example.proiect_java.Model;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -15,17 +16,14 @@ public class User {
     private String name;
 
     @Column
+    @JsonIgnore
     private String password;
 
     @Column
     private String email;
 
     @Column
-    private long money;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    @JsonIgnore
-    private Set<Book> library;
+    private int money;
 
     public User(){}
 
@@ -61,16 +59,6 @@ public class User {
         this.email = email;
     }
 
-    public Set<Book> getLibrary() {
-        return library;
-    }
-
-    public void addToLibrary(Book book) {
-        this.library.add(book);
-    }
-
-    public void removeFromLibrary(Book book) {this.library.remove(book);}
-
     public long getMoney() {
         return money;
     }
@@ -81,5 +69,9 @@ public class User {
 
     public void substractMoney(long money) {
         this.money -= money;
+    }
+
+    public long getId() {
+        return id;
     }
 }
