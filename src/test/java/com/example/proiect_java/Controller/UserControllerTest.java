@@ -32,9 +32,10 @@ public class UserControllerTest {
         String endpoint = "/user/register";
         mockMvc.perform(MockMvcRequestBuilders
                 .post(endpoint)
-                .param("name","Alex")
+                .contentType(MediaType.APPLICATION_JSON)
+                .param("name","Alexx")
                 .param("password","parola")
-                .param("email","alex@email.com"))
+                .param("email","alex15@email.com"))
                 .andExpect(MockMvcResultMatchers.status().isAccepted());
     }
 

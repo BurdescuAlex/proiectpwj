@@ -1,4 +1,6 @@
 package com.example.proiect_java.Model;
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,12 +11,15 @@ public class Book {
     private long id;
 
     @Column
+    @NotNull
     private String title;
 
     @Column
+    @NotNull
     private String author;
 
     @Column
+    @NotNull
     private int price;
 
     @ManyToOne
@@ -22,6 +27,7 @@ public class Book {
     private User user;
 
     @Column
+    @NotNull
     boolean sellable;
 
     public Book(){}

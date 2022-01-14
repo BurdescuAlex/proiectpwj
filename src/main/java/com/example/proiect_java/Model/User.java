@@ -1,6 +1,7 @@
 package com.example.proiect_java.Model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -13,16 +14,20 @@ public class User {
     private long id;
 
     @Column
+    @NotNull
     private String name;
 
     @Column
+    @NotNull
     @JsonIgnore
     private String password;
 
     @Column
+    @NotNull
     private String email;
 
     @Column
+    @NotNull
     private int money;
 
     public User(){}

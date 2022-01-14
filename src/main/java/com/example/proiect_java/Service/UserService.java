@@ -74,12 +74,12 @@ public class UserService {
 
     public Boolean addMoney(int amount)
     {
-        try {
+        if(amount>0){
             this.currentUser.addMoney(amount);
             userRepository.save(currentUser);
             return true;
         }
-        catch (RuntimeException e){
+        else{
             return false;
         }
     }
